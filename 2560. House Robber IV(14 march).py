@@ -21,7 +21,8 @@ class Solution:
                 left = mid + 1
         return left
 
-
+sol = Solution()
+print(sol.minCapability([2, 3, 5, 9], 2))
 # nums =
 # [2,3,5,9]
 # k =
