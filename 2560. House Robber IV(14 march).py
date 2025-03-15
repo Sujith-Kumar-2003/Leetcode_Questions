@@ -1,5 +1,5 @@
 class Solution:
-    def minCapability(self, nums: List[int], k: int) -> int:
+    def minCapability(self, nums, k) -> int:
         N = len(nums)
         def hasNeighbours(target):
             count = 0
@@ -15,7 +15,7 @@ class Solution:
         right = 10 ** 9
         while left < right:
             mid = (left + right) // 2
-            if good(mid):
+            if hasNeighbours(mid):
                 right = mid
             else:
                 left = mid + 1
