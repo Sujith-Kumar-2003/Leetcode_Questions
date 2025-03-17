@@ -115,7 +115,10 @@ class LinkedList:
         i = 0
         if index > self.length or index < 0:
             return None
-
+        elif i == 0:
+            self.prepend(value)
+        elif i == self.length:
+            self.append(value)
         else:
             while i < index:
                 temp = temp.next
@@ -124,8 +127,30 @@ class LinkedList:
             new_node = Node(value)
             prev.next = new_node
             new_node.next = temp
+        self.length+=1
 
-
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        if self.length == 0:
+            return None
+        if index == 0:
+            removed = self.head
+            self.head = self.head.next
+            if self.length == 1:
+                self.tail = None
+        else:
+            i = 0
+            prev = self.head
+            while i < index - 1:
+                prev = prev.next
+                i += 1
+            removed = prev.next
+            prev.next = removed.next
+            if removed.next is None:
+                self.tail = prev
+        self.length -= 1
+        return removed.value
 
 
 
@@ -145,6 +170,10 @@ print("THE get value is ",my_linked_list.get(1))
 print("the value is set ",my_linked_list.set_value(2, 56))
 
 print(f"The value inserted", my_linked_list.insert(1,21))
+my_linked_list.print_list()
+
+print(f"The value deleted", my_linked_list.remove(3))
+
 
 # print(f"the first value popped is {my_linked_list.pop_first().value}")
 
